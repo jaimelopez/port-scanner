@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"net"
 	"time"
-	"github.com/jaimelopez/port-scanner/resolver"
 )
 
 const (
