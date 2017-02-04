@@ -22,6 +22,8 @@ func (scan *Scanner) AddRange(starts int, ends int) error {
 	for i := starts; i <= ends; i++ {
 		scan.AddPort(i)
 	}
+
+	return nil
 }
 
 func (scan *Scanner) Run() (scanReport ScanReport, error error) {
