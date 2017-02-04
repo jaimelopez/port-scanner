@@ -14,7 +14,7 @@ func (scan *Scanner) AddPort(port int) {
 func (scan *Scanner) AddPortCollection(ports []int) {
 }
 
-func (scan *Scanner) AddRange(starts int, ends int) {
+func (scan *Scanner) AddRange(starts int, ends int) error {
 	if starts > ends {
 		return errors.New("Invalid range")
 	}
