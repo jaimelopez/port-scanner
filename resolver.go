@@ -5,7 +5,7 @@ import (
 	"net"
 )
 
-func Address(address string) (ips []string, error error) {
+func ResolveAddress(address string) (ips []string, error error) {
 	ips, error = resolveIP(address)
 
 	if ips != nil {

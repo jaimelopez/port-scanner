@@ -77,7 +77,7 @@ func makeReport(entries []EntryPoint) ScanReport {
 }
 
 func ListAllHostsAndPorts(address string, ports []int) (list []EntryPoint, error error) {
-	hosts, error := resolver.Address(address)
+	hosts, error := ResolveAddress(address)
 
 	if error != nil {
 		return
