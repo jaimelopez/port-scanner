@@ -1,12 +1,9 @@
 package scanner
 
-type Host struct{ string }
-type Port struct{ int }
-
 type EntryPoint struct {
-	Host
-	Port
+	Host string
+	Port int
 	Opened bool
 }
 
-type ScanReport map[Host][]Port
+type ScanReport map[string][]int

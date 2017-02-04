@@ -42,7 +42,7 @@ func SpecificPorts(address string, ports []int) (scanReport ScanReport, error er
 		concurrency <- 1
 
 		go func(entryPoint EntryPoint) {
-			entryPoint.Opened = IsPortOpened(entryPoint.Host.string, entryPoint.Port.int)
+			entryPoint.Opened = IsPortOpened(entryPoint.Host, entryPoint.Port)
 
 			<-concurrency
 			channel <- entryPoint
@@ -85,9 +85,7 @@ func ListAllHostsAndPorts(address string, ports []int) (list []EntryPoint, error
 
 	for _, host := range hosts {
 		for _, port := range ports {
-			entryPoint := EntryPoint{}
-			entryPoint.Host = Host{host}
-			entryPoint.Port = Port{port}
+			entryPoint := EntryPoint{ Host: host, Port: port }
 
 			list = append(list, entryPoint)
 		}
