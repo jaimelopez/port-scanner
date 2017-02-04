@@ -2,9 +2,9 @@ package scanner
 
 import (
 	"fmt"
-	"mensahell/resolver"
 	"net"
 	"time"
+	"github.com/jaimelopez/port-scanner/resolver"
 )
 
 const (

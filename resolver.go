@@ -1,4 +1,4 @@
-package resolver
+package scanner
 
 import (
 	"errors"
