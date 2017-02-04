@@ -4,14 +4,17 @@ import "errors"
 
 type Scanner struct {
 	Address string
-	Ports   []int
+	ports   []int
 }
 
 func (scan *Scanner) AddPort(port int) {
-	scan.Ports = append(scan.Ports, port)
+	scan.ports = appendUnique(scan.ports, port)
 }
 
 func (scan *Scanner) AddPortCollection(ports []int) {
+	for _, port := range ports {
+		scan.AddPort(port)
+	}
 }
 
 func (scan *Scanner) AddRange(starts int, ends int) error {
@@ -26,13 +29,23 @@ func (scan *Scanner) AddRange(starts int, ends int) error {
 	return nil
 }
 
+func appendUnique(slice []int, current int) []int {
+	for _, element := range slice {
+		if element == current {
+			return slice
+		}
+	}
+
+	return append(slice, current)
+}
+
 func (scan *Scanner) Run() (scanReport ScanReport, error error) {
 	if error != nil {
 		return
 	}
 
-	if len(scan.Ports) > 0 {
-		scanReport, error = SpecificPorts(scan.Address, scan.Ports)
+	if len(scan.ports) > 0 {
+		scanReport, error = SpecificPorts(scan.Address, scan.ports)
 	} else {
 		scanReport, error = AllOpenedPorts(scan.Address)
 	}
