@@ -59,21 +59,10 @@ func SpecificPorts(address string, ports []int) (scanReport ScanReport, error er
 		}
 	}
 
-	scanReport = makeReport(processedEntries)
+	scanReport = ScanReport{}
+	scanReport.Compose(processedEntries)
 
 	return
-}
-
-func makeReport(entries []EntryPoint) ScanReport {
-	scanReport := make(ScanReport)
-
-	for _, entryPoint := range entries {
-		if entryPoint.Opened {
-			scanReport[entryPoint.Host] = append(scanReport[entryPoint.Host], entryPoint.Port)
-		}
-	}
-
-	return scanReport
 }
 
 func ListAllHostsAndPorts(address string, ports []int) (list []EntryPoint, error error) {
