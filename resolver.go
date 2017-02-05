@@ -14,7 +14,7 @@ func ResolveAddress(address string) (ips []string, error error) {
 
 	ips, error = resolveDomain(address)
 
-	if error != nil {
+	if ips != nil {
 		return
 	}
 
