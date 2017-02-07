@@ -45,7 +45,7 @@ func (scan *Scanner) Run() (scanReport ScanReport, error error) {
 	}
 
 	if len(scan.ports) > 0 {
-		scanReport, error = SpecificPorts(scan.Address, scan.ports)
+		scanReport, error = CheckSpecificPorts(scan.Address, scan.ports)
 	} else {
 		scanReport, error = AllOpenedPorts(scan.Address)
 	}

@@ -20,12 +20,12 @@ func AllOpenedPorts(address string) (scanReport ScanReport, error error) {
 		ports = append(ports, i)
 	}
 
-	scanReport, error = SpecificPorts(address, ports)
+	scanReport, error = CheckSpecificPorts(address, ports)
 
 	return
 }
 
-func SpecificPorts(address string, ports []int) (scanReport ScanReport, error error) {
+func CheckSpecificPorts(address string, ports []int) (scanReport ScanReport, error error) {
 	entryPointCollection, error := ListAllHostsAndPorts(address, ports)
 
 	if error != nil {
@@ -74,7 +74,7 @@ func ListAllHostsAndPorts(address string, ports []int) (list []EntryPoint, error
 
 	for _, host := range hosts {
 		for _, port := range ports {
-			entryPoint := EntryPoint{ Host: host, Port: port }
+			entryPoint := EntryPoint{Host: host, Port: port}
 
 			list = append(list, entryPoint)
 		}
