@@ -39,20 +39,10 @@ func appendUnique(slice []int, current int) []int {
 	return append(slice, current)
 }
 
-func (scan *Scanner) Run() (scanReport ScanReport, error error) {
-	if error != nil {
-		return
-	}
-
+func (scan *Scanner) Run() (ScanReport, error) {
 	if len(scan.ports) > 0 {
-		scanReport, error = CheckSpecificPorts(scan.Address, scan.ports)
-	} else {
-		scanReport, error = AllOpenedPorts(scan.Address)
+		return CheckSpecificPorts(scan.Address, scan.ports)
 	}
 
-	if error != nil {
-		return
-	}
-
-	return
+	return AllOpenedPorts(scan.Address)
 }
